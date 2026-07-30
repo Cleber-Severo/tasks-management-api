@@ -1,11 +1,24 @@
+using TasksManagementApi.Application.UseCases.Tasks.GetAll;
+using TasksManagementApi.Infrastructure.Repositories.InMemory;
+using TasksManagementApi.Infrastructure.Repositories.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+
+// InMemory repository
+builder.Services.AddSingleton<ITaskRepository, InMemoryTasksRepository>();
+builder.Services.AddScoped<GetAllTasksUseCase>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddRouting(option => option.LowercaseUrls = true);
 
 var app = builder.Build();
 

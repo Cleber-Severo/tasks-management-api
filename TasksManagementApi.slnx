@@ -5,4 +5,5 @@
   <Project Path="TasksManagementApi.API/TasksManagementApi.API.csproj" />
   <Project Path="TasksManagementApi.Application/TasksManagementApi.Application.csproj" />
   <Project Path="TasksManagementApi.Communication/TasksManagementApi.Communication.csproj" />
+  <Project Path="TasksManagementApi.Infrastructure/TasksManagementApi.Infrastructure.csproj" />
 </Solution>

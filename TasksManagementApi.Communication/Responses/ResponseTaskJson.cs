@@ -1,8 +1,8 @@
 ﻿using TasksManagementApi.Communication.Enums;
 
-namespace TasksManagementApi.Communication.Entities;
+namespace TasksManagementApi.Communication.Responses;
 
-public class Task
+public class ResponseTaskJson
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
