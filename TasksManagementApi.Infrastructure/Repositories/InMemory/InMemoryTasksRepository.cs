@@ -41,6 +41,11 @@ public class InMemoryTasksRepository : ITaskRepository
         }
     ];
 
+    public void Add(TaskEntity task)
+    {
+       _tasks.Add(task);
+    }
+
     public List<TaskEntity> GetAll() => _tasks;
 
     IReadOnlyCollection<TaskEntity> ITaskRepository.GetAll()

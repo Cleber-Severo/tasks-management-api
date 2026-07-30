@@ -4,4 +4,5 @@ namespace TasksManagementApi.Infrastructure.Repositories.Interfaces;
 public interface ITaskRepository
 {
     IReadOnlyCollection<TaskEntity> GetAll();
+    void Add(TaskEntity task);
 }

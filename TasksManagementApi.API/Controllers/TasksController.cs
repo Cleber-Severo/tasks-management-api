@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TasksManagementApi.Application.UseCases.Tasks.GetAll;
+using TasksManagementApi.Application.UseCases.Tasks.Register;
+using TasksManagementApi.Communication.Requests;
 using TasksManagementApi.Communication.Responses;
 
 namespace TasksManagementApi.API.Controllers;
@@ -10,10 +12,15 @@ namespace TasksManagementApi.API.Controllers;
 public class TasksController : ControllerBase
 {
     private readonly GetAllTasksUseCase _getAllTasksUseCase;
+    private readonly RegisterTaskUseCase _registerTaksUseCase;
 
-    public TasksController(GetAllTasksUseCase getAllTasksUseCase)
+    public TasksController(
+        GetAllTasksUseCase getAllTasksUseCase,
+        RegisterTaskUseCase registerTaksUseCase
+    )
     {
         _getAllTasksUseCase = getAllTasksUseCase;
+        _registerTaksUseCase = registerTaksUseCase;
     }
 
     [HttpGet]
@@ -27,5 +34,14 @@ public class TasksController : ControllerBase
             return NoContent();
 
         return Ok(response);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(typeof(ResponseShortTaskJson), StatusCodes.Status201Created)]
+    public IActionResult Register(RequestRegisterTaskJson request) 
+    {
+        var response = _registerTaksUseCase.Execute(request);
+
+        return Created(string.Empty, response);
     }
 }

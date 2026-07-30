@@ -1,4 +1,5 @@
 using TasksManagementApi.Application.UseCases.Tasks.GetAll;
+using TasksManagementApi.Application.UseCases.Tasks.Register;
 using TasksManagementApi.Infrastructure.Repositories.InMemory;
 using TasksManagementApi.Infrastructure.Repositories.Interfaces;
 
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 // InMemory repository
 builder.Services.AddSingleton<ITaskRepository, InMemoryTasksRepository>();
 builder.Services.AddScoped<GetAllTasksUseCase>();
+builder.Services.AddScoped<RegisterTaskUseCase>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

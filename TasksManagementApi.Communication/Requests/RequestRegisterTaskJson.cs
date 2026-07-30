@@ -1,13 +1,11 @@
 ﻿using TasksManagementApi.Communication.Enums;
 
-namespace TasksManagementApi.Communication.Entities;
+namespace TasksManagementApi.Communication.Requests;
 
-public class TaskEntity
+public class RequestRegisterTaskJson
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public PriorityType Priority { get; set; }
     public DateTime DueDate { get; set; }
-    public StatusType Status { get; set; } = StatusType.Pending;
 }
