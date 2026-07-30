@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Itens de Solução/">
     <File Path=".gitignore" />
+    <File Path="Readme.md" />
   </Folder>
   <Project Path="TasksManagementApi.API/TasksManagementApi.API.csproj" />
   <Project Path="TasksManagementApi.Application/TasksManagementApi.Application.csproj" />
