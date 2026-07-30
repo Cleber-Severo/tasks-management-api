@@ -48,6 +48,9 @@ public class InMemoryTasksRepository : ITaskRepository
 
     public List<TaskEntity> GetAll() => _tasks;
 
+    public TaskEntity? GetById(Guid id)
+        => _tasks.FirstOrDefault(task => task.Id == id);
+
     IReadOnlyCollection<TaskEntity> ITaskRepository.GetAll()
     {
         return GetAll();
