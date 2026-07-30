@@ -1,3 +1,4 @@
+using TasksManagementApi.Application.UseCases.Tasks.Delete;
 using TasksManagementApi.Application.UseCases.Tasks.GetAll;
 using TasksManagementApi.Application.UseCases.Tasks.GetById;
 using TasksManagementApi.Application.UseCases.Tasks.Register;
@@ -17,6 +18,7 @@ builder.Services.AddScoped<GetAllTasksUseCase>();
 builder.Services.AddScoped<RegisterTaskUseCase>();
 builder.Services.AddScoped<GetTaskByIdUseCase>();
 builder.Services.AddScoped<UpdateTaskUsecase>();
+builder.Services.AddScoped<DeleteTaskUseCase>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

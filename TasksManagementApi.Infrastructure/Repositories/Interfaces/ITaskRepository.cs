@@ -8,4 +8,5 @@ public interface ITaskRepository
     TaskEntity? GetById(Guid id);
     void Add(TaskEntity task);
     void Update(RequestUpdateTaskJson task, Guid id);
+    void Delete(Guid id);
 }

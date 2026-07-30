@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TasksManagementApi.Application.UseCases.Tasks.Delete;
 using TasksManagementApi.Application.UseCases.Tasks.GetAll;
 using TasksManagementApi.Application.UseCases.Tasks.GetById;
 using TasksManagementApi.Application.UseCases.Tasks.Register;
@@ -16,18 +16,21 @@ public class TasksController : ControllerBase
     private readonly RegisterTaskUseCase _registerTaksUseCase;
     private readonly GetTaskByIdUseCase _getTaskByIdUseCase;
     private readonly UpdateTaskUsecase _updateTaskUsecase;
+    private readonly DeleteTaskUseCase _deleteTaskUseCase;
 
     public TasksController(
         GetAllTasksUseCase getAllTasksUseCase,
         RegisterTaskUseCase registerTaksUseCase,
         GetTaskByIdUseCase getTaskByIdUseCase,
-        UpdateTaskUsecase updateTaskUsecase
+        UpdateTaskUsecase updateTaskUsecase,
+        DeleteTaskUseCase deleteTaskUseCase
     )
     {
         _getAllTasksUseCase = getAllTasksUseCase;
         _getTaskByIdUseCase = getTaskByIdUseCase;
         _registerTaksUseCase = registerTaksUseCase;
         _updateTaskUsecase = updateTaskUsecase;
+        _deleteTaskUseCase = deleteTaskUseCase;
     }
 
     [HttpPost]
@@ -72,6 +75,17 @@ public class TasksController : ControllerBase
         _updateTaskUsecase.Execute(request ,id);
 
         return Ok("Tarefa atualizada com sucesso.");
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult Delete([FromRoute] Guid id)
+    {
+        _deleteTaskUseCase.Execute(id);
+
+        return Ok("Tarefa removida com sucesso.");
     }
 
 }

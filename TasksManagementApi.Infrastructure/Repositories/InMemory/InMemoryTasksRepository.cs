@@ -30,6 +30,14 @@ public class InMemoryTasksRepository : ITaskRepository
     {
        _tasks.Add(task);
     }
+    public void Delete(Guid id)
+    {
+        var task = _tasks.FirstOrDefault(task => task.Id == id);
+
+        if (task is null) return;
+
+        _tasks.Remove(task);
+    }
 
     public void Update(RequestUpdateTaskJson request, Guid id)
     {

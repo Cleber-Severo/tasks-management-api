@@ -1,6 +1,4 @@
-﻿using TasksManagementApi.Communication.Entities;
-using TasksManagementApi.Communication.Requests;
-using TasksManagementApi.Communication.Responses;
+﻿using TasksManagementApi.Communication.Requests;
 using TasksManagementApi.Infrastructure.Repositories.Interfaces;
 
 namespace TasksManagementApi.Application.UseCases.Tasks.Register;
