@@ -16,6 +16,7 @@ builder.Services.AddSingleton<ITaskRepository, InMemoryTasksRepository>();
 builder.Services.AddScoped<GetAllTasksUseCase>();
 builder.Services.AddScoped<RegisterTaskUseCase>();
 builder.Services.AddScoped<GetTaskByIdUseCase>();
+builder.Services.AddScoped<UpdateTaskUsecase>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

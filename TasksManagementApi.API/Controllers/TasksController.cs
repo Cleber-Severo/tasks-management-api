@@ -15,16 +15,19 @@ public class TasksController : ControllerBase
     private readonly GetAllTasksUseCase _getAllTasksUseCase;
     private readonly RegisterTaskUseCase _registerTaksUseCase;
     private readonly GetTaskByIdUseCase _getTaskByIdUseCase;
+    private readonly UpdateTaskUsecase _updateTaskUsecase;
 
     public TasksController(
         GetAllTasksUseCase getAllTasksUseCase,
         RegisterTaskUseCase registerTaksUseCase,
-        GetTaskByIdUseCase getTaskByIdUseCase
+        GetTaskByIdUseCase getTaskByIdUseCase,
+        UpdateTaskUsecase updateTaskUsecase
     )
     {
         _getAllTasksUseCase = getAllTasksUseCase;
-        _registerTaksUseCase = registerTaksUseCase;
         _getTaskByIdUseCase = getTaskByIdUseCase;
+        _registerTaksUseCase = registerTaksUseCase;
+        _updateTaskUsecase = updateTaskUsecase;
     }
 
     [HttpPost]
@@ -58,6 +61,17 @@ public class TasksController : ControllerBase
         var response = _getTaskByIdUseCase.Execute(id);
 
         return Ok(response);
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult Update([FromRoute] Guid id, [FromBody] RequestUpdateTaskJson request)
+    {
+        _updateTaskUsecase.Execute(request ,id);
+
+        return Ok("Tarefa atualizada com sucesso.");
     }
 
 }

@@ -16,6 +16,9 @@ public class GetTaskByIdUseCase
     { 
         var task = _taskRepository.GetById(id);
 
+        if (task is null)
+            throw new InvalidOperationException();
+
         return new ResponseTaskJson
         { 
             Id = task.Id,

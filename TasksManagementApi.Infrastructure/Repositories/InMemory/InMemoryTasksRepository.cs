@@ -1,5 +1,6 @@
 ﻿using TasksManagementApi.Communication.Entities;
 using TasksManagementApi.Communication.Enums;
+using TasksManagementApi.Communication.Requests;
 using TasksManagementApi.Infrastructure.Repositories.Interfaces;
 
 namespace TasksManagementApi.Infrastructure.Repositories.InMemory;
@@ -17,22 +18,6 @@ public class InMemoryTasksRepository : ITaskRepository
         },
         new()
         {
-            Name = "Write Unit Tests",
-            Description = "Cover the TaskService with unit tests.",
-            Priority = PriorityType.Medium,
-            DueDate = DateTime.Now.AddDays(5),
-            Status = StatusType.Pending
-        },
-        new()
-        {
-            Name = "Update Documentation",
-            Description = "Add API endpoints to the README file.",
-            Priority = PriorityType.Low,
-            DueDate = DateTime.Now.AddDays(7),
-            Status = StatusType.Pending
-        },
-        new()
-        {
             Name = "Fix Validation Bug",
             Description = "Prevent tasks from being created with an empty name.",
             Priority = PriorityType.High,
@@ -44,6 +29,19 @@ public class InMemoryTasksRepository : ITaskRepository
     public void Add(TaskEntity task)
     {
        _tasks.Add(task);
+    }
+
+    public void Update(RequestUpdateTaskJson request, Guid id)
+    {
+        var task = _tasks.FirstOrDefault(task => task.Id == id);
+
+        if (task is null) return;
+
+        task.Name = request.Name;
+        task.Description = request.Description;
+        task.DueDate = request.DueDate;
+        task.Status = request.Status;
+        task.Priority = request.Priority;
     }
 
     public List<TaskEntity> GetAll() => _tasks;
