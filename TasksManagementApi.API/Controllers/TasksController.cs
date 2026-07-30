@@ -3,6 +3,7 @@ using TasksManagementApi.Application.UseCases.Tasks.Delete;
 using TasksManagementApi.Application.UseCases.Tasks.GetAll;
 using TasksManagementApi.Application.UseCases.Tasks.GetById;
 using TasksManagementApi.Application.UseCases.Tasks.Register;
+using TasksManagementApi.Application.UseCases.Tasks.Update;
 using TasksManagementApi.Communication.Requests;
 using TasksManagementApi.Communication.Responses;
 
@@ -35,6 +36,7 @@ public class TasksController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(ResponseShortTaskJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
     public IActionResult Register([FromBody] RequestRegisterTaskJson request) 
     {
         var response = _registerTaksUseCase.Execute(request);

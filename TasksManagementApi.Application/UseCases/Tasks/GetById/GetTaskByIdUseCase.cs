@@ -1,4 +1,5 @@
-﻿using TasksManagementApi.Communication.Responses;
+﻿using TasksManagementApi.Communication.Exceptions;
+using TasksManagementApi.Communication.Responses;
 using TasksManagementApi.Infrastructure.Repositories.Interfaces;
 
 namespace TasksManagementApi.Application.UseCases.Tasks.GetById;
@@ -17,7 +18,7 @@ public class GetTaskByIdUseCase
         var task = _taskRepository.GetById(id);
 
         if (task is null)
-            throw new InvalidOperationException();
+            throw new NotFoundException("Tarefa não encontrada");
 
         return new ResponseTaskJson
         { 

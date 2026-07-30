@@ -1,7 +1,9 @@
+using TasksManagementApi.API.Filters;
 using TasksManagementApi.Application.UseCases.Tasks.Delete;
 using TasksManagementApi.Application.UseCases.Tasks.GetAll;
 using TasksManagementApi.Application.UseCases.Tasks.GetById;
 using TasksManagementApi.Application.UseCases.Tasks.Register;
+using TasksManagementApi.Application.UseCases.Tasks.Update;
 using TasksManagementApi.Infrastructure.Repositories.InMemory;
 using TasksManagementApi.Infrastructure.Repositories.Interfaces;
 
@@ -26,6 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
+builder.Services.AddMvc(option => option.Filters.Add(typeof(ExceptionFilter)));
 
 var app = builder.Build();
 
